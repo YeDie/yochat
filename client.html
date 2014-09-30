@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Chat!</title>
+	<link href="./normalize.css" rel="stylesheet" type="text/css" />
+	<link href="./style_main.css" rel="stylesheet" type="text/css" />
+	<link href="./style_default.css" rel="stylesheet" type="text/css"
+		title="Default" />
+	<link href="./style_blackonwhite.css" rel="stylesheet" type="text/css"
+		title="Black on White" />
+	<script type="text/javascript" src="./openpgp.js"></script>
+	<script type="text/javascript" src="./cookies.js"></script>
+	<script type="text/javascript" src="./chat.js"></script>
+	<script type="text/javascript" src="./theme.js"></script>
+	<script type="text/javascript" src="./expandtextarea.js"></script>
+</head>
+<body>
+	<form id="message_form" action="./post_message.php" method="post"
+		onsubmit="post_message(this); return false;">
+		<input id="input_guest_name" name="guest_name" type="text">
+		<br />
+		<div class="expanding">
+			<pre><span></span><br /></pre>
+			<textarea id="textarea_message" name="message_content"></textarea>
+		</div>
+		<input id="input_message" name="message_content" type="text"
+			hidden>
+		<br />
+		<select id="input_publickey">
+			<option value="none">None/unencrypted</option>
+		</select>
+		<br />
+		<input id="input_submit" type="submit" value="Send">
+		<input id="input_refresh" type="button" value="Refresh"
+			onclick="refresh_message_container();">
+		<input id="input_toggle_options_menu" type="button"
+			value="Options" onclick="toggle_options_menu();">
+		<input id="input_toggle_encryption_menu" type="button"
+			value="Encryption" onclick="toggle_encryption_menu();">
+		<div id="options_menu" hidden>
+			<p class="nobr">Message limit</p>
+			<input id="input_message_limit" name="message_limit"
+				type="number" value="10">
+			<br />
+			<p class="nobr">Refresh rate (miliseconds)</p>
+			<input id="input_refresh_rate" name="refresh_rate"
+				type="number" value="10000">
+			<br />
+			<p class="nobr">Theme</p>
+			<select id="input_theme" name="theme">
+				<option value="Default">Default</option>
+				<option value="Black on White">
+					Black on White
+				</option>
+			</select>
+			<br />
+			<p class="nobr">Message input rows</p>
+			<input id="input_input_size" name="input_size"
+				type="number" value="3">
+			<br />
+			<input id="input_save_options" type="button" 
+				value="Save" onclick="save_options();">
+		</div>
+		<div id="encryption_menu" hidden>
+			<p class="nobr">Public key import</p>
+			<br />
+			<textarea id="input_publickey_import"></textarea>
+			<input type="button" value="Import"
+				onclick="import_public_key();">
+			<br />
+			<p class="nobr">Copy keys</p>
+			<input id="input_copy_public_key" type="button"
+				value="Public key" onclick="copy_public_key();">
+			<input id="input_copy_private_key" type="button"
+				value="Private key"
+				onclick="copy_private_key();">
+			<br />
+			<p class="nobr">Generate keypair</p>
+			<br />
+			<p class="nobr">Key size</p>
+			<select id="input_keysize">
+				<option value="1024">1024</option>
+				<option value="2048">2048</option>
+			</select>
+			<br />
+			<p class="nobr">Passphrase</p>
+			<br />
+			<input id="input_key_password" type="password">
+			<br />
+			<input id="input_key_password_confirm" type="password">
+			<br />
+			<input id="input_generate_keypair" type="button"
+				value="Generate" onclick="generate_keypair();">
+			<div id="keygen_message" hidden>
+				<p class="nobr">
+					Generating keypair.
+					This may take a while...
+				</p>
+			</div>
+			<input id="input_clear_keyring" type="button"
+				value="Clear keyring"
+				onclick="clear_keyring();">
+			</div>
+		</form>
+		<table>
+			<tbody id="message_container">
+		</tbody>
+	</table>	
+</body>
+</html>

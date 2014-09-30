@@ -1,0 +1,33 @@
+@import url(http://fonts.googleapis.com/css?family=Oxygen+Mono);
+@import url(http://fonts.googleapis.com/css?family=Oxygen);
+
+
+html {
+	font-family: "Oxygen", Arial, sans-serif;
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+input, textarea, select {
+	background-color: #000000;
+}
+
+p, #input_guest_name, #input_message {
+	font-family: "Oxygen Mono", Arial, sans-serif;
+}
+
+p.message_content {
+	font-size: 14px;
+}
+
+p.message_info {
+	font-size: 10px;
+}
+
+p.nobr {
+	display: inline;
+}
+
+#shout_container {
+
+}

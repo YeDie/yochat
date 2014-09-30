@@ -1,0 +1,47 @@
+textarea.expanding, pre {
+	border: 0;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+}
+
+.expanding {
+	border: 1px solid #666666;
+	position: relative;
+}
+
+.expanding > pre,
+.expanding > textarea {
+	background: transparent;
+	/*min-height: 100px;*/
+	padding: 5px;
+	/*font: 400 13px/16px helvetica, arial, sans-serif;*/
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.expanding > textarea {
+	border: 1px solid #FFFFFF;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100px;
+}
+
+.expanding.active > textarea {
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	resize: none;
+	top: 0;
+}
+
+.expanding > pre {
+	display: none;
+}
+
+.expanding.active > pre {
+	display: block;
+	visibility: hidden;
+}
