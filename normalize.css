@@ -7,7 +7,7 @@
  */
 
 html {
-  font:Arial 15px; /* 1 */
+  font:sans-serif 15px; /* 1 */
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
