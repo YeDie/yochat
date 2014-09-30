@@ -1,3 +1,3 @@
 I'll write something here later...
 
-Ooo! ^^
+And I wrote something here! :3
