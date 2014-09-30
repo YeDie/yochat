@@ -284,7 +284,7 @@ function save_options() {
 	}
 	if (input_size === 1) {
 		form.querySelector("#input_message").hidden = false;
-		form.querySelector("#textarea_message").hidden = true;
+		form.querySelector("#div_textarea_message").hidden = true;
 		input_textarea = false;
 		if (form.querySelector("#textarea_message").value.trim() !== "") {
 			form.querySelector("#input_message").value = (
@@ -294,7 +294,7 @@ function save_options() {
 	}
 	if (input_size > 1) {
 		form.querySelector("#input_message").hidden = true;
-		form.querySelector("#textarea_message").hidden = false;
+		form.querySelector("#div_textarea_message").hidden = false;
 		input_textarea = true;
 		if (form.querySelector("#input_message").value.trim() !== "") {
 			form.querySelector("#textarea_message").value = (
@@ -341,7 +341,7 @@ function load_options() {
 	if (document_cookies.get_cookie("input_size") !== null) {
 		if (document_cookies.get_cookie("input_size") === "1") {
 			form.querySelector("#input_message").hidden = false;
-			form.querySelector("#textarea_message").hidden = (
+			form.querySelector("#div_textarea_message").hidden = (
 				true
 			);
 			input_textarea = false;
