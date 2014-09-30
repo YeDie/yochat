@@ -1,33 +1,65 @@
-@import url(http://fonts.googleapis.com/css?family=Oxygen+Mono);
-@import url(http://fonts.googleapis.com/css?family=Oxygen);
+/* I don't want any fancy fonts. 3: */
 
-
-html {
-	font-family: "Oxygen", Arial, sans-serif;
-	color: white;
-	background-color: black;
+body {
+	font-family:Arial;
+	background-color:#000;
+	color:#FFF;
 }
 
 input, textarea, select {
-	background-color: #000000;
+	background-color:#000000;
 }
 
 p, #input_guest_name, #input_message {
-	font-family: "Oxygen Mono", Arial, sans-serif;
+	font-family:Arial, sans-serif;
 }
 
 p.message_content {
-	font-size: 14px;
+	font-size:15px;
 }
 
 p.message_info {
-	font-size: 10px;
+	font-size:15px;
 }
 
 p.nobr {
-	display: inline;
+	display:inline;
 }
 
-#shout_container {
+#message_container {
+	position:absolute;
+	left:50%;
+	width:600px;
+	margin-left:-300px;
+	background-color:#555;
+	border-radius:10px;
+	box-shadow:0 0 7px -2px #FFF;
+}
 
+#message_container .message_info {
+	display:none;
+}
+
+#message_container .message_content {
+	border:1px solid #FFF;
+	margin:3px 5px;
+	padding:2px;
+	background-color:rgba(0,0,0,0.4);
+	border-radius:4px;
+	animation:newmessage 1s;
+	transform-origin:25% 50%;
+}
+
+@keyframes newmessage
+{
+	0%
+	{
+		transform:scale(0.6);
+		opacity:0;
+	}
+	100%
+	{
+		transform:scale(1);
+		opacity:1;
+	}
 }

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Chat!</title>
+	<link href="normalize.css" rel="stylesheet" type="text/css">
+	<link href="style_main.css" rel="stylesheet" type="text/css">
+	<link href="style_default.css" rel="stylesheet" type="text/css" title="Default">
+	<link href="style_blackonwhite.css" rel="stylesheet" type="text/css" title="Black on White">
+	<script type="text/javascript" src="openpgp.js"></script>
+	<script type="text/javascript" src="cookies.js"></script>
+	<script type="text/javascript" src="chat.js"></script>
+	<script type="text/javascript" src="theme.js"></script>
+	<script type="text/javascript" src="expandtextarea.js"></script>
+<link href="sbi.css" rel="stylesheet" type="text/css" id="sbi-style"></head>
+<body>
+	<form id="message_form" action="./post_message.php" method="post" onsubmit="post_message(this); return false;">
+		<input id="input_guest_name" name="guest_name" type="text">
+		<br>
+		<div class="expanding active active">
+			<pre><span></span><br></pre>
+			<textarea id="textarea_message" name="message_content"></textarea>
+		</div>
+		<input id="input_message" name="message_content" hidden="" type="text">
+		<br>
+		<select id="input_publickey">
+			<option selected="selected" value="none">None/unencrypted</option>
+		</select>
+		<br>
+		<input id="input_submit" value="Send" type="submit">
+		<input id="input_refresh" value="Refresh" onclick="refresh_message_container();" type="button">
+		<input id="input_toggle_options_menu" value="Options" onclick="toggle_options_menu();" type="button">
+		<input id="input_toggle_encryption_menu" value="Encryption" onclick="toggle_encryption_menu();" type="button">
+		<div id="options_menu" hidden="">
+			<p class="nobr">Message limit</p>
+			<input id="input_message_limit" name="message_limit" value="10" type="number">
+			<br>
+			<p class="nobr">Refresh rate (miliseconds)</p>
+			<input id="input_refresh_rate" name="refresh_rate" value="10000" type="number">
+			<br>
+			<p class="nobr">Theme</p>
+			<select id="input_theme" name="theme">
+				<option selected="selected" value="Default">Default</option>
+				<option value="Black on White">
+					Black on White
+				</option>
+			</select>
+			<br>
+			<p class="nobr">Message input rows</p>
+			<input id="input_input_size" name="input_size" value="3" type="number">
+			<br>
+			<input id="input_save_options" value="Save" onclick="save_options();" type="button">
+		</div>
+		<div id="encryption_menu" hidden="">
+			<p class="nobr">Public key import</p>
+			<br>
+			<textarea id="input_publickey_import"></textarea>
+			<input value="Import" onclick="import_public_key();" type="button">
+			<br>
+			<p class="nobr">Copy keys</p>
+			<input id="input_copy_public_key" value="Public key" onclick="copy_public_key();" type="button">
+			<input id="input_copy_private_key" value="Private key" onclick="copy_private_key();" type="button">
+			<br>
+			<p class="nobr">Generate keypair</p>
+			<br>
+			<p class="nobr">Key size</p>
+			<select id="input_keysize">
+				<option selected="selected" value="1024">1024</option>
+				<option value="2048">2048</option>
+			</select>
+			<br>
+			<p class="nobr">Passphrase</p>
+			<br>
+			<input id="input_key_password" type="password">
+			<br>
+			<input id="input_key_password_confirm" type="password">
+			<br>
+			<input id="input_generate_keypair" value="Generate" onclick="generate_keypair();" type="button">
+			<div id="keygen_message" hidden="">
+				<p class="nobr">
+					Generating keypair.
+					This may take a while...
+				</p>
+			</div>
+			<input id="input_clear_keyring" value="Clear keyring" onclick="clear_keyring();" type="button">
+			</div>
+		</form>
+		<table>
+			<tbody id="message_container">
+				<tr id="message_id_44">
+					<td width="512">
+						<p class="message_content">Ben: test2</p>
+					</td>
+					<td>
+						<p class="message_info">#44 @Tue Sep 30 2014 06:40:49 GMT+1000 (AUS Eastern Standard Time)</p>
+					</td>
+				</tr>
+				
+				<tr id="message_id_43"><td width="512"><p class="message_content">Ben: test</p></td><td><p class="message_info">#43 @Tue Sep 30 2014 05:54:29 GMT+1000 (AUS Eastern Standard Time)</p></td></tr><tr id="message_id_42"><td width="512"><p class="message_content">Chromium: It works!</p></td><td><p class="message_info">#42 @Mon Sep 29 2014 19:48:12 GMT+1000 (AUS Eastern Standard Time)</p></td></tr><tr id="message_id_41"><td width="512"><p class="message_content">Chromium: Hello!<br><br></p></td><td><p class="message_info">#41 @Mon Sep 29 2014 19:47:43 GMT+1000 (AUS Eastern Standard Time)</p></td></tr><tr id="message_id_40"><td width="512"><p class="message_content">test: test</p></td><td><p class="message_info">#40 @Mon Sep 29 2014 18:58:11 GMT+1000 (AUS Eastern Standard Time)</p></td></tr><tr id="message_id_39"><td width="512"><p class="message_content">: Test1<br>Test2<br>Test3</p></td><td><p class="message_info">#39 @Mon Sep 29 2014 18:23:11 GMT+1000 (AUS Eastern Standard Time)</p></td></tr><tr id="message_id_38"><td width="512"><p class="message_content">Zeke (Firefox): Thanks for letting me take a peek! I'm happy to help in any way that I can. ^_^</p></td><td><p class="message_info">#38 @Mon Sep 29 2014 17:44:48 GMT+1000 (AUS Eastern Standard Time)</p></td></tr><tr id="message_id_37"><td width="512"><p class="message_content">Ben: Thanks for helping me test!</p></td><td><p class="message_info">#37 @Mon Sep 29 2014 17:42:52 GMT+1000 (AUS Eastern Standard Time)</p></td></tr><tr id="message_id_36"><td width="512"><p class="message_content">Zeke (Firefox): Okay. Just making sure you knew.</p></td><td><p class="message_info">#36 @Mon Sep 29 2014 17:40:20 GMT+1000 (AUS Eastern Standard Time)</p></td></tr><tr id="message_id_35"><td width="512"><p class="message_content">Ben: Yeah. That theme is old and I need to update it. </p></td><td><p class="message_info">#35 @Mon Sep 29 2014 17:39:50 GMT+1000 (AUS Eastern Standard Time)</p></td></tr>
+		</tbody>
+	</table>	
+
+
+<div style="left: 0px; top: 0px; position: absolute; width: 29px; height: 27px; border: medium none; margin: 0px; padding: 0px; z-index: 2147483647; display: none;" class="sbi_search" id="sbi_camera_button"></div></body></html>
