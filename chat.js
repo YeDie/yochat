@@ -115,9 +115,35 @@ function message_to_html(message) {
 	first for Windows CRLF newlines, then for ancient MacOS CR newlines,
 	and lastly Unix and others' LF newlines */
 	
-	var timestamp = new Date(parseInt(message[3]) * 1000);
+	var message_date = new Date(parseInt(message[3]) * 1000);
 	/* Message time is in seconds after 1970-01-01 (POSIX time),
 	but Date wants it in milliseconds, so we multiply by 1000 here */
+	
+	var now = new Date();
+	var timestamp = "";
+	var daysago = (
+		(now.getTime() / 1000 / 60 / 60 / 24) -
+		(message_date.getTime() / 1000 / 60 / 60 / 24)
+	);
+	console.log(daysago);
+	/* Dividing by 1000 gets seconds, 60 gets minutes,
+	60 again gets hours, and 24 gets days after 1970 */
+	if (daysago > 2) {
+		timestamp = (daysago.toFixed() + " days ago.");
+	}
+	else if (daysago > 1) {
+		timestamp = (
+			"Yesterday at " +
+			message_date.getHours().toString() + ":" +
+			message_date.getSeconds().toString()
+		);
+	}
+	else if (daysago > 0) {
+		timestamp = (
+			message_date.getHours().toString() + ":" +
+			message_date.getSeconds().toString()
+		);
+	}
 	
 	var tr = document.createElement("tr");
 	var td1 = document.createElement("td");
@@ -127,7 +153,7 @@ function message_to_html(message) {
 	var p2 = document.createElement("p");
 	p1.innerHTML = message[1] + ": " + message_content;
 	p1.className = "message_content";
-	p2.innerHTML = "#" + message[0] + " @" + timestamp.toString();
+	p2.innerHTML = "#" + message[0] + " @" + timestamp;
 	p2.className = "message_info";
 	td1.appendChild(p1);
 	td1.width = "512";
