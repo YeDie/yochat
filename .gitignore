@@ -1,0 +1,6 @@
+# Files to ignore
+.jshintrc
+*.swp
+
+# Files to not ignore
+!.gitignore

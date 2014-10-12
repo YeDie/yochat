@@ -1,6 +1,6 @@
 /* ECMAScript 5 Strict Mode */
 "use strict";
-/* This makes JavaScript throw a few more errors on  */
+/* This makes JavaScript throw a few more useful errors */
 
 /* Globals */
 var message_template = [0, "name", "message", 0];
@@ -57,8 +57,8 @@ function post_message(data) {
 	var request = get_request_object();
 	request.open("POST", "./post_message.php", true);
 	request.setRequestHeader(
-		'Content-Type',
-		'application/x-www-form-urlencoded'
+		"Content-Type",
+		"application/x-www-form-urlencoded"
 	);
 	request.send(
 		"guest_name=" + encodeURIComponent(message_guest_name) +
@@ -431,13 +431,17 @@ function init_chat() {
 		refresh_message_container, refresh_rate
 	);
 	
-	for_nodes(document.querySelectorAll(".expanding"), function (index, element) {
-		make_expanding(element);
-	});
+	for_nodes(document.querySelectorAll(".expanding"),
+		function (index, element) {
+			make_expanding(element);
+		}
+	);
 	
-	for_nodes(document.querySelectorAll(".expanding"), function (index, element) {
-		make_expanding(element);
-	});
+	for_nodes(document.querySelectorAll(".expanding"),
+			function (index, element) {
+			make_expanding(element);
+		}
+	);
 }
 
 function init_enc() {

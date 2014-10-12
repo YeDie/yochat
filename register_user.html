@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>YoChat - User Registration</title>
+	<link href="./normalize.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./register.js"></script>
+</head>
+<body>
+	<form id="register_form" action="./add_user.php" method="post"
+		onsubmit="add_user();">
+		<table><tbody>
+			<tr>
+				<td>
+					<p>Username</p>
+				</td>
+				<td>
+					<input id="input_username"
+						name="username" type="test"
+						onkeyup="test_name();">
+				</td>
+				<td>
+					<p id="p_username"></p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Email address</p>
+				</td>
+				<td>
+					<input id="input_email"
+						name="email" type="text"
+						onkeyup="validate_form();">
+				</td>
+				<td>
+					<p id="p_email"></p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Password</p>
+				</td>
+				<td>
+					<input id="input_password"
+						name="password1"
+						type="password"
+						onkeyup="validate_form();">
+				</td>
+				<td>
+					<p id="p_password1"></p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Confirm password</p>
+				</td>
+				<td>
+					<input id="input_password_confirm"
+						name="password2"
+						type="password"
+						onkeyup="validate_form();">
+				</td>
+				<td>
+					<p id="p_password2"></p>
+				</td>
+			</tr>
+		</tbody></table>
+		<input id="clear_button" type="button" value="Clear"
+			onclick="clear_form();">
+		<input id="input_submit" type="submit" value="Register">
+	</form>
+</body>
+</html>
