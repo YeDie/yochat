@@ -42,7 +42,9 @@ function post_message(data) {
 		form.querySelector("#input_submit").disabled = false;
 	}, 1000);
 	var message_guest_name = data.querySelector("#input_guest_name").value;
-	document_cookies.set_cookie("guest_name", message_guest_name);
+	document_cookies.set_cookie(
+		"guest_name", message_guest_name, "Fri, 31 Dec 9999"
+	);
 	var message_content = data.querySelector("#textarea_message").value;
 	if (message_content.trim() === "") {
 		message_content = data.querySelector("#input_message").value;
@@ -292,7 +294,8 @@ function save_options() {
 	var message_limit_int = parseInt(message_limit_value);
 	if (message_limit_int > 1 && message_limit_int <= 100) {
 		message_limit = message_limit_int;
-		document_cookies.set_cookie("message_limit", message_limit);
+		document_cookies.set_cookie(
+			"message_limit", message_limit, "Fri, 31 Dec 9999");
 	}
 
 	var refresh_rate_int = parseInt(refresh_rate_value);
@@ -300,13 +303,17 @@ function save_options() {
 		refresh_rate = refresh_rate_int;
 		window.clearInterval(refresh_interval);
 		refresh_interval = window.setInterval(refresh_message_container, refresh_rate);
-		document_cookies.set_cookie("refresh_rate", refresh_rate);
+		document_cookies.set_cookie(
+			"refresh_rate", refresh_rate, "Fri, 31 Dec 9999"
+		);
 	}
 	
 	var input_size_int = parseInt(input_size_value);
 	if (input_size_int > 0) {
 		input_size = input_size_int;
-		document_cookies.set_cookie("input_size", input_size);
+		document_cookies.set_cookie(
+			"input_size", input_size, "Fri, 31 Dec 9999"
+		);
 	}
 	if (input_size === 1) {
 		form.querySelector("#input_message").hidden = false;
